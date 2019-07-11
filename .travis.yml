@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+language: php
+
+php:
+  - 7.1
+
+# Only watch the master branch and tagged release.
+branches:
+ only:
+   - master
+   - develop
+   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
+script:
+  - "./vendor/bin/phpcs"
+  - "./vendor/bin/phpunit --no-coverage --stop-on-error --stop-on-fail"
