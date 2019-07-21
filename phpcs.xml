@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="kwri-lumen">
-  <description>Created for Lumen Microservices on KWRI</description>
-  <file>./app</file>
-  <file>./config</file>
-  <file>./bootstrap</file>
-  <file>./database</file>
-  <file>./libs</file>
-  <file>./public</file>
-  <file>./routes</file>
-  <file>./tests</file>
+<ruleset name="phpcs-lumen">
+  <description>Lumen project</description>
+  <file>app</file>
+  <file>config</file>
+  <file>bootstrap</file>
+  <file>database</file>
+  <file>libs</file>
+  <file>public</file>
+  <file>routes</file>
+  <file>tests</file>
   <rule ref="Generic.CodeAnalysis">
-    <exclude-pattern>./libs</exclude-pattern>
-    <exclude-pattern>./bootstrap/app.php</exclude-pattern>
+    <exclude-pattern>bootstrap/app.php</exclude-pattern>
   </rule>
   <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
-    <exclude-pattern>./app</exclude-pattern>
+    <exclude-pattern>app</exclude-pattern>
   </rule>
   <rule ref="Generic.Files.LineLength">
     <properties>
@@ -24,7 +23,7 @@
   </rule>
   <rule ref="Generic.Metrics"/>
   <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
-    <exclude-pattern>./database</exclude-pattern>
+    <exclude-pattern>database</exclude-pattern>
   </rule>
   <rule ref="PSR2" />
   <rule ref="PSR12" />

@@ -31,6 +31,10 @@
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-autoload-dump": [
+            "php -r \"copy('var/githooks/pre-commit', '.git/hooks/pre-commit');\"",
+            "php -r \"chmod('.git/hooks/pre-commit', 0755);\""
         ]
     },
     "config": {
