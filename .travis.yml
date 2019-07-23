@@ -1,0 +1,36 @@
+sudo: required
+dist: trusty
+language: php
+
+php:
+  - 7.1
+
+# Only watch the master branch and tagged release.
+branches:
+ only:
+   - master
+   - develop
+   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      
+before_script:
+  - mysql_upgrade
+  - mysql -e 'CREATE DATABASE homestead_test;'
+  - mysql -e "CREATE USER 'homestead'@'localhost' IDENTIFIED BY 'secret';"
+  - mysql -e "GRANT ALL ON homestead_test.* TO 'homestead'@'localhost';"
+  - cp .env.travis .env
+  - composer self-update
+  - composer clear-cache -vvv
+  - composer install --no-interaction -vvv
+  - composer dump-autoload -vvv
+  - php artisan migrate:refresh --seed
+
+script:
+  # - "./vendor/bin/phpcs"
+  - "./vendor/bin/phpunit --no-coverage --stop-on-error --stop-on-fail"
