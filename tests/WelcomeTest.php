@@ -1,5 +1,7 @@
 <?php
 
+namespace Test;
+
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
@@ -15,7 +17,10 @@ class WelcomeTest extends TestCase
         $this->get('/');
 
         $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+            $this->app->version(),
+            $this->response->getContent()
         );
+
+        $this->assertTrue(true);
     }
 }
